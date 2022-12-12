@@ -11,4 +11,6 @@ public class ListDiffsModel
         Values = listValuesDiff.Count > 0 ? listValuesDiff : null;
     }
 
+    public ListDiffsModel() { }
+
 }

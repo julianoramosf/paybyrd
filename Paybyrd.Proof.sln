@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paybyrd.Proof.WebApi", "Pay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paybyrd.UnitTest", "Paybyrd.UnitTest\Paybyrd.UnitTest.csproj", "{006AF468-B591-4919-9AE2-98434E2621FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paybyrd.IntegrationTest", "Paybyrd.IntegrationTest\Paybyrd.IntegrationTest.csproj", "{D0E1ED01-F599-41C3-9D17-1F98C8CB5994}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,13 @@ Global
 		{006AF468-B591-4919-9AE2-98434E2621FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{006AF468-B591-4919-9AE2-98434E2621FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{006AF468-B591-4919-9AE2-98434E2621FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983226D9-D21B-46D4-A2B8-6168B98EB958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983226D9-D21B-46D4-A2B8-6168B98EB958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983226D9-D21B-46D4-A2B8-6168B98EB958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983226D9-D21B-46D4-A2B8-6168B98EB958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E1ED01-F599-41C3-9D17-1F98C8CB5994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E1ED01-F599-41C3-9D17-1F98C8CB5994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E1ED01-F599-41C3-9D17-1F98C8CB5994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E1ED01-F599-41C3-9D17-1F98C8CB5994}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
