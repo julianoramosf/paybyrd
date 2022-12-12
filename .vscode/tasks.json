@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/PayByrd.Proof.WebApi/PayByrd.Proof.WebApi.csproj",
+                "${workspaceFolder}/Paybyrd.Proof.WebApi/Paybyrd.Proof.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/PayByrd.Proof.WebApi/PayByrd.Proof.WebApi.csproj",
+                "${workspaceFolder}/Paybyrd.Proof.WebApi/Paybyrd.Proof.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/PayByrd.Proof.WebApi/PayByrd.Proof.WebApi.csproj"
+                "${workspaceFolder}/Paybyrd.Proof.WebApi/Paybyrd.Proof.WebApi.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

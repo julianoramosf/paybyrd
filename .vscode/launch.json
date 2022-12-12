@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/PayByrd.Proof.WebApi/bin/Debug/net7.0/PayByrd.Proof.WebApi.dll",
+            "program": "${workspaceFolder}/Paybyrd.Proof.WebApi/bin/Debug/net7.0/Paybyrd.Proof.WebApi.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/PayByrd.Proof.WebApi",
+            "cwd": "${workspaceFolder}/Paybyrd.Proof.WebApi",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             // "serverReadyAction": {
