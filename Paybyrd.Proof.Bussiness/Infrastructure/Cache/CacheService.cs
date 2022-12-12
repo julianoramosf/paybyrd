@@ -5,6 +5,11 @@ using System.Text;
 using Paybyrd.Proof.Bussiness.Constants;
 
 namespace Paybyrd.Proof.Bussiness.Infrastructure.Cache;
+
+/// <summary>
+///  This Class implement the memory cache.
+///  In a scenario with many requests and a need of high-throughput, I'd use Redis or another in-memory data structure store. 
+/// </summary>
 public static class MemCache
 {
     private static readonly MemoryCache Cache = new MemoryCache(Global.MEMCACHE);

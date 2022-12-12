@@ -14,7 +14,7 @@ public class DiffController : ControllerBase
         _logger = logger;
         _service = service;
     }
-
+   
     [HttpPost("{id}/left")]
     public IActionResult Left(Guid id, [FromBody]BaseModel model)
     {

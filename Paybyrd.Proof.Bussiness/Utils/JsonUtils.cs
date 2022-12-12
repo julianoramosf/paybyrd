@@ -3,6 +3,9 @@ using Paybyrd.Proof.Bussiness.Models;
 
 namespace Paybyrd.Proof.Bussiness.Utils;
 
+/// <summary>
+/// Utilitary class to provide required methods to compare and list differences from a Json Data Structure.
+/// </summary>
 public static class JsonUtils
 {
     public static bool Equals(JObject left, JObject right)

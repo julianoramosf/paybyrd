@@ -11,6 +11,13 @@ namespace Paybyrd.Proof.Bussiness.Service;
 
 public class DiffService : IDiffService
 {
+ 
+    /// <summary>
+    ///  Method to save data object on memory to be compare in the Process Result Method
+    /// </summary>
+    /// <param name="id">Key parameter</param>
+    /// <param name="side">Side to save the data</param>
+    /// <param name="data">JSON base64 encoded</param>
     public void SaveDataObject(Guid id, string side, string data)
     {
         try
@@ -22,7 +29,6 @@ public class DiffService : IDiffService
             var model = MemCache.Exists(id.ToString()) ? MemCache.Get<DiffDataModel>(id.ToString()) : new DiffDataModel(id.ToString());
             model.WriteJObject(side, dataObject);
             MemCache.UpdateOrAdd<DiffDataModel>(id.ToString(), model);
-
         }
         catch
         {
@@ -30,6 +36,10 @@ public class DiffService : IDiffService
         }
     }
 
+    /// <summary>
+    ///  Method to process a comparison of Json data structure
+    /// </summary>
+    /// <param name="id">Key parameter</param>
     public ResponseDiffDataModel? ProcessResult(Guid id)
     {
         try
