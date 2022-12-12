@@ -2,45 +2,32 @@
 using System.Collections.Generic;
 using System.Runtime.Caching;
 using System.Text;
+using PayByrd.Proof.Bussiness.Constants;
 
 namespace PayByrd.Proof.Bussiness.Infrastructure.Cache;
-public static class CacheService
+public static class MemCache
 {
-    private static readonly ObjectCache ObjCache = MemoryCache.Default;
-
-    private static bool Exists(string key)
+    private static readonly MemoryCache Cache = new MemoryCache(Global.MEMCACHE);
+    private static readonly CacheItemPolicy cacheItemPolicy = new CacheItemPolicy
     {
-        return ObjCache.Get(key) != null;
+        AbsoluteExpiration = DateTimeOffset.Now.AddHours(1)
+    };
+
+    public static bool Exists(string key)
+    {
+        return Cache.Get(key) != null;
     }
 
     public static T Get<T>(string key)
     {
-        try
-        {
-            if (ObjCache[key] is T)
-            {
-                return (T)ObjCache[key];
-            }
-            else
-            {
-                throw new ApplicationException("create new exception");
-            }
-        }
-        catch
-        {
-            throw;
-        }
+        return (T)Cache.Get(key);
     }
-    public static T? UpdateOrAdd<T>(string key, T obj, DateTime time)
+    public static void UpdateOrAdd<T>(string key, T obj)
     {
-        var value = Get<T>(key);
-        if (value != null)
-        {
-            return value;
-        }
-      
-        ObjCache.Add(key, obj, DateTime.Now.AddHours(1));
-        return obj;
+        if (Exists(key))
+            Cache.Remove(key);
+
+        Cache.Add(new CacheItem(key, obj), cacheItemPolicy);
     }
 
 }

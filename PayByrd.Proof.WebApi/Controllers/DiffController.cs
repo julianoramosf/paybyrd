@@ -1,112 +1,60 @@
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
-using PayByrd.Proof.WebApi;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-
+using PayByrd.Proof.Bussiness.Interfaces;
+using PayByrd.Proof.Bussiness.Constants;
 namespace PayByrd.Proof.WebApi.Controllers;
-
 [ApiController]
-[Route("/v1/[controller]")]
+[Route("/v1/diff")]
 public class DiffController : ControllerBase
 {
     private readonly ILogger<DiffController> _logger;
+    private readonly IDiffService _service;
 
-    public DiffController(ILogger<DiffController> logger)
+    public DiffController(ILogger<DiffController> logger, IDiffService service)
     {
         _logger = logger;
+        _service = service;
     }
 
     [HttpPost("{id}/left")]
-    public async Task<string> Left(string id)
+    public IActionResult Left(Guid id, [FromBody]BaseModel model)
     {
-        var json = String.Empty;
-        JObject leftObject;
-
-        using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+        try
         {
-            var jsonBase64 = await reader.ReadToEndAsync();
-            var blob = Convert.FromBase64String(jsonBase64);
-            json = Encoding.UTF8.GetString(blob);
-            leftObject = JsonConvert.DeserializeObject<JObject>(json) ?? new JObject();
+            _service.SaveDataObject(id, Global.LEFTDIFF, model.Data);
+            return Ok();
         }
-
-
-        // var base64 = @"e0tleSA6ICdhYmMnLCBpc0V4aXN0czogJ3RydWUnfQ==";
-        // var blob = Convert.FromBase64String(base64);
-        // var json = Encoding.UTF8.GetString(blob);
-        // // string: "{Key : 'abc', isExists: 'true'}"
-
-        // var obj = JsonConvert.DeserializeObject<MyPayload>(json);
-
-        // var base64 = @"e0tleSA6ICdhYmMnLCBpc0V4aXN0czogJ3RydWUnfQ==";
-        // var blob = Convert.FromBase64String(base64);
-        // var json = Encoding.UTF8.GetString(blob);
-        // // string: "{Key : 'abc', isExists: 'true'}"
-        // var obj = JsonConvert.DeserializeObject<MyPayload>(json);
-
-        return json;
-
+        catch (System.Exception ex)
+        {
+            return BadRequest(ex);
+        }
     }
 
     [HttpPost("{id}/right")]
-    public async Task<string> Right(string id)
+    public IActionResult Right(Guid id, [FromBody]BaseModel model)
     {
-        var json = String.Empty;
-
-        using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+        try
         {
-            var jsonBase64 = await reader.ReadToEndAsync();
-            var blob = Convert.FromBase64String(jsonBase64);
-            json = Encoding.UTF8.GetString(blob);
+            _service.SaveDataObject(id, Global.RIGHTDIFF, model.Data);
+           return Ok();
         }
-
-        // var base64 = @"e0tleSA6ICdhYmMnLCBpc0V4aXN0czogJ3RydWUnfQ==";
-        // var blob = Convert.FromBase64String(base64);
-        // var json = Encoding.UTF8.GetString(blob);
-        // // string: "{Key : 'abc', isExists: 'true'}"
-
-        // var obj = JsonConvert.DeserializeObject<MyPayload>(json);
-
-        // var base64 = @"e0tleSA6ICdhYmMnLCBpc0V4aXN0czogJ3RydWUnfQ==";
-        // var blob = Convert.FromBase64String(base64);
-        // var json = Encoding.UTF8.GetString(blob);
-        // // string: "{Key : 'abc', isExists: 'true'}"
-        // var obj = JsonConvert.DeserializeObject<MyPayload>(json);
-
-        return json;
-
+        catch (System.Exception ex)
+        {
+            return BadRequest(ex);
+        }
     }
 
-    [HttpPost("{id}")]
-    public async Task<string> Post(string id)
+    [HttpGet("{id}")]
+    public IActionResult Get(Guid id)
     {
-        var json = String.Empty;
-
-        using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+        try
         {
-            var jsonBase64 = await reader.ReadToEndAsync();
-            var blob = Convert.FromBase64String(jsonBase64);
-            json = Encoding.UTF8.GetString(blob);
+            var result = _service.ProcessResult(id);
+            return Ok(result);
         }
-        
-        // JObject
-        
-                // var base64 = @"e0tleSA6ICdhYmMnLCBpc0V4aXN0czogJ3RydWUnfQ==";
-        // var blob = Convert.FromBase64String(base64);
-        // var json = Encoding.UTF8.GetString(blob);
-        // // string: "{Key : 'abc', isExists: 'true'}"
-
-        // var obj = JsonConvert.DeserializeObject<MyPayload>(json);
-
-        // var base64 = @"e0tleSA6ICdhYmMnLCBpc0V4aXN0czogJ3RydWUnfQ==";
-        // var blob = Convert.FromBase64String(base64);
-        // var json = Encoding.UTF8.GetString(blob);
-        // // string: "{Key : 'abc', isExists: 'true'}"
-        // var obj = JsonConvert.DeserializeObject<MyPayload>(json);
-
-        return json;
-
+        catch (System.Exception ex)
+        {
+            return BadRequest(ex);
+        }
     }
 
 }
